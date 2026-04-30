@@ -1,0 +1,89 @@
+
+{
+    "items": [
+        {
+            "id": "id",
+            "type": "book",
+            "status": "finished",
+            "emisionStatus": "inEmision",
+            "isFavorite": true
+        }
+    ],
+    "genres": [
+        {
+            "id": "id",
+            "name": "genreName"
+        }
+    ],
+    "item_genres": [
+        {
+            "item_id": "id",
+            "genre_id": "id"
+        }
+    ],
+    "comments": [
+        {
+            "id": "id",
+            "item_id": "id",
+            "content": "comment content",
+            "created_at": "timestamp"
+        }
+    ],
+    "books": [
+        {
+            "id": "id",
+            "item_id": "id",
+            "book_name": "bookName",
+            "author": "author",
+            "cover": "cover",
+            "year": 2000
+        }
+    ],
+    "movies": [
+        {
+            "id": "id",
+            "item_id": "id",
+            "movie_name": "movieName",
+            "year": 2000,
+            "director": "director",
+            "cover": "cover"    
+        }
+    ],
+    "sagas": [
+        {
+            "id": "id",
+            "name": "sagaName",
+            "type": "sagaType",
+            "cover": "cover"
+        }
+    ],
+    "saga_items": [
+        {
+            "saga_id": "id",
+            "item_id": "id",
+            "order": 1
+        }
+    ],
+    "series": [
+        {
+            "id": "id",
+            "serie_name": "serieName",
+            "item_id": "id",
+            "has_season": true,
+            "year": 2000,
+            "director": "director",
+            "cover": "cover"
+        }
+    ],
+    "season_series": [
+        {
+            "serie_id": "id",
+            "id": "id",
+            "season_name": "seasonName",
+            "year": 2000,
+            "cover": "cover",
+            "director": "director",
+            "order": 1
+        }
+    ]
+}

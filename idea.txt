@@ -1,0 +1,34 @@
+Seguimiento de lecturas, peliculas y series
+
+Libro
+Esta dividido por:
+Libro: aparece la caratura con el título y el autor
+Saga: caratula se transforma en botón y abre la lista de los libros asociados por cada título individual + número de orden y el autor
+
+Peliculas
+Esta dividido por:
+Pelicula: aparece la caratula con el título y el año
+Saga: caratula se transforma en boton y abre la lista de las películas asociadas por título  + número de orden y el año
+
+series
+Esta dividido por:
+Serie de una temporada: aparece caratula con el título y año
+Serie con más temporadas: caratula se transforma en boton y abre la lista de las temporadas con título y año
+
+Todos tienen la opcion de elegir uno de los siguientes estados
+Pendiente
+En progreso
+Terminado
+
+Todos tienen la opción de agregar uno de estados estados
+En emisión
+Emisión Finalizada
+
+agregar el filtro de favoritos
+agregar el filtro de por género
+
+agregar sistema de busqueda
+agregar caja de comentarios
+
+Para libros usar Open Library API
+Para peliculas y series usar The Movie Database (TMDB) API
