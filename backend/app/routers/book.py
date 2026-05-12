@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.schemas.book import BookCreate, BookResponse
+from app.schemas.book import BookCreate, BookResponse, OpenLibraryBookResult
 from app.models.book import Book
+from app.services.open_library import search_books as ol_search_books, get_book_details as ol_get_book_details
 
 router = APIRouter(prefix="/api/books", tags=["books"])
 
@@ -10,6 +11,16 @@ router = APIRouter(prefix="/api/books", tags=["books"])
 def get_books(db: Session = Depends(get_db)):
     books = db.query(Book).all()
     return books
+
+@router.get("/search", response_model=list[OpenLibraryBookResult])
+async def search_books(query: str):
+    data = await ol_search_books(query)
+    return data["docs"]
+ 
+@router.get("/openlibrary/{book_id}", response_model=OpenLibraryBookResult)
+async def get_book_details(book_id: str):
+    data = await ol_get_book_details(book_id)
+    return data
 
 @router.get("/{book_id}", response_model=BookResponse)
 def get_book(book_id: int, db: Session = Depends(get_db)):

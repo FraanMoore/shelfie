@@ -15,3 +15,10 @@ class BookResponse(BookBase):
     
     class Config:
         from_attributes = True
+
+class OpenLibraryBookResult(BaseModel):
+    key: str
+    title: str
+    author_name: list[str] | None = None
+    first_publish_year: int | None = None
+    cover_i: int | None = None

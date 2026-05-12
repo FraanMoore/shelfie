@@ -15,3 +15,10 @@ class MovieResponse(MovieBase):
     
     class Config:
         from_attributes = True
+
+class TMDBMovieResult(BaseModel):
+    id: int
+    title: str
+    release_date: str | None = None
+    overview: str | None = None
+    poster_path: str | None = None

@@ -1,15 +1,21 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.schemas.movie import MovieCreate, MovieResponse
+from app.schemas.movie import MovieCreate, MovieResponse, TMDBMovieResult
 from app.models.movie import Movie
+from app.services.tmdb import search_movies as tmdb_search_movies
 
 router = APIRouter(prefix="/api/movies", tags=["movies"])
 
 @router.get("/", response_model=list[MovieResponse])
-def get_movies(db: Session = Depends(get_db)):
+async def get_movies(db: Session = Depends(get_db)):
     db_movies = db.query(Movie).all()
     return db_movies
+
+@router.get("/search", response_model=list[TMDBMovieResult])
+async def search_movies(query: str, db: Session = Depends(get_db)):
+    data = await tmdb_search_movies(query)
+    return data["results"]
 
 @router.get("/{movie_id}", response_model=MovieResponse)
 def get_movie(movie_id: int, db: Session = Depends(get_db)):

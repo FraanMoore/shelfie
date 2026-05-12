@@ -32,3 +32,10 @@ class SeasonResponse(SeasonBase):
 
         class Config:
             from_attributes = True
+
+class TMDBSerieResult(BaseModel):
+    id: int
+    name: str
+    first_air_date: str | None = None
+    overview: str | None = None
+    poster_path: str | None = None
