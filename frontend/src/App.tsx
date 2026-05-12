@@ -1,15 +1,19 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import Books from './pages/Books'
+import Home from './pages/Home'
+import Movies from './pages/Movies'
+import Series from './pages/Series'
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<div>Home</div>} />
-      <Route path="/books" element={<div>Books</div>} />
-      <Route path="/movies" element={<div>Movies</div>} />
-      <Route path="/series" element={<div>Series</div>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/books" element={<Books />} />
+      <Route path="/movies" element={<Movies />} />
+      <Route path="/series" element={<Series />} />
     </Routes>
     </BrowserRouter>
   )
