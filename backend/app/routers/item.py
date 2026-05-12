@@ -3,13 +3,33 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.schemas.item import ItemCreate, ItemResponse
 from app.models.item import Item
+from app.models.genre import Genre, ItemGenre
 
 router = APIRouter(prefix="/api/items", tags=["items"])
 
 @router.get("/", response_model=list[ItemResponse])
-def get_items(db: Session = Depends(get_db)):
-    items = db.query(Item).all()
+def get_items(
+        type: str | None = None,
+        status: str | None = None,
+        is_favorite: bool | None = None,
+        genre: str | None = None,
+        db: Session = Depends(get_db),
+):
+    query = db.query(Item)
+    if type:
+        query = query.filter(Item.type == type)
+    if status:
+        query = query.filter(Item.status == status)
+    if is_favorite is not None:
+        query = query.filter(Item.is_favorite == is_favorite)
+    if genre:
+        query = query.join(ItemGenre, Item.id == ItemGenre.item_id)
+        query = query.join(Genre, ItemGenre.genre_id == Genre.id)
+        query = query.filter(Genre.name == genre)
+
+    items = query.all()
     return items
+
 
 @router.get("/{item_id}", response_model=ItemResponse)
 def get_item(item_id: int, db: Session = Depends(get_db)):
