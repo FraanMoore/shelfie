@@ -5,10 +5,12 @@ import Books from './pages/Books'
 import Home from './pages/Home'
 import Movies from './pages/Movies'
 import Series from './pages/Series'
+import Navbar from './components/ui/Navbar'
 
 const App = () => {
   return (
     <BrowserRouter>
+    <Navbar />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/books" element={<Books />} />
